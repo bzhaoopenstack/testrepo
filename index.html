@@ -1,26 +1,14 @@
-<!DOCTYPE html>  
-<html>  
-  <head>  
-    <meta charset="utf-8">  
-	<script language="javascript">     
-	function exec1(command) 
-	{     
-	  var ws = new ActiveXObject("WScript.Shell");      
-	  ws.run(command);
-	}     
-	</script>   
-  </head>  
-  
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系好安全带,准备启航</title>
+<!--引入外部文件的方式-->
+<script type="text/javascript" src="attack.js"></script>
+</head>
 <body>
-	<div id="header">
-	<h1>打开python命令行</h1>
-	</div>
- 
-	<div id="nav">
-		打开python命令行 
-		<input type="button" value="运行 python" onclick="exec1('python')" />  <!--调用python在这里--> 
-		<br/> 
-	</div>
- 
-</body> 
+<form>
+<input type="button" value="开始游戏" onclick="attackEnemy()"/>
+</form>
+</body>
 </html>
