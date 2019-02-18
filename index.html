@@ -86,7 +86,7 @@
 			    octo.repos('wangxiyuan', 'ai-openlab-test').issues(10).comments.create({body: "Hello World"})
 				repo = octo.repos('wangxiyuan', 'ai-openlab-test')
 				repo.commits.fetch()
-                .then(function {items}) {
+                .then(function ({items}) {
 				  let lastcommit = items[items.length - 1]
 				  let new_branch = function () {
 				    var text = "";
@@ -98,7 +98,7 @@
 					return "ai-test-" + text;
 				  }
 				  return repo.git.refs.create({ref: 'refs/heads/' + new_branch, sha: lastcommit.sha})
-				}
+				})
 				repo.git.commits.create({"message": "test frontend api"})
 			    
 			}
