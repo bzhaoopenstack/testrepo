@@ -84,6 +84,23 @@
 			    var cb = function (err, val) { console.log(val) }
 			    octo.zen.read(cb)
 			    octo.repos('wangxiyuan', 'ai-openlab-test').issues(10).comments.create({body: "Hello World"})
+				repo = octo.repos('wangxiyuan', 'ai-openlab-test')
+				repo.commits.fetch()
+                .then(function (items)) {
+				  let lastcommit = items[items.length - 1]
+				  let new_branch = function () {
+				    var text = "";
+					var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+					for (var i = 0; i < 5; i++)
+					text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+					return "ai-test-" + text;
+				  }
+				  return repo.git.refs.create({ref: 'refs/heads/' + new_branch, sha: lastcommit.sha})
+				}
+				repo.git.commits.create({"message": "test frontend api"})
+			    
 			}
 			</script> 
 			<button onclick="onClick()">Submit!</button></p>
