@@ -41,7 +41,6 @@
 						var xhr = new XMLHttpRequest();
 						xhr.open(/* method */ "POST", /* target url */ "upload.jsp?fileName=" + file.name /*, async, default to true */);
                   xhr.overrideMimeType("application/octet-stream");
-						xhr.sendAsBinary(reader.result);
 						
 						xhr.onreadystatechange = function() {
 							if (xhr.readyState == 4) {
