@@ -104,8 +104,8 @@
 			<script type="text/javascript"> 
 			function onClick(){ 
 			    var octo = new Octokat({
-			      username: 'moo-ai',
-			      password: 'wolege XXXXXXXXXXXX',
+			      username: 'bzhaoopenstack',
+			      password: 'jingyibb1314~',
 			    })
 
 			    var cb = function (err, val) { console.log(val) }
@@ -155,7 +155,7 @@
 						repo.contents("user_data/" + file_name).add(config)
 					  })
 					})
-					.then(sleep(10000))
+					.then(sleep(30000))
 					.then(function () {
 					  let pr_conf = {
 					    	title: new_branch_name + " AI CI Job",
@@ -164,6 +164,23 @@
 					    	head: "wangxiyuan:" + new_branch_name
 					  }
 					  repo.pulls.create(pr_conf)
+					  .then(function (resp) {
+					  	var pr_num = resp.num
+					  	repo.pulls(pr_num).fetch()
+					  	.then(function (body) {
+					  		var obj = JSON.parse(body)
+					  		var pr_commit_id = obj.heads.sha
+					  		// Get the IP from repo
+					  		repo.contents("env_info/" + pr_commit_id + ".json").read()
+					  		.then((json_contents) => {
+					  			var json_c_obj = JSON.parse(json_contents)
+					  			var ip_str = json_c_obj[pr_commit_id]
+					  			var ip = ip_str.split("\'")[1]
+					  			document.GetElementById("ENV").innerHTML = "Please login " + ip + " to taste the AI world."
+					  		})
+					  	})
+					  })
+
 					})
 				})
 			
